@@ -14,13 +14,14 @@ app.post("/webhook", async (req, res) => {
   const phone = req.body["Phone"];
   const filial = req.body["filial"];
   const payment = JSON.parse(req.body["payment"]);
+  const psum = payment["amount"] || 0;
 
   switch (formname) {
     case "Cart":
       await fetch(
         `https://chatter.salebot.pro/api/db7f33e51fd6486a7d1271a0d74e920f/callback?${
           sbId ? "client_id=" + sbId : "client_phone=" + phone
-        }&filial=${filial}&message=zakaz_oplachen&description=${payment.products?.join("\n")}`
+        }&filial=${filial}&message=zakaz_oplachen&description=${payment.products?.join("\n")}&psum=${psum}`
       );
 
       break;
