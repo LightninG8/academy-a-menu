@@ -13,7 +13,7 @@ app.post("/webhook", async (req, res) => {
   const sbId = req.body["sb_id"];
   const phone = req.body["Phone"];
   const filial = req.body["filial"];
-  const payment = JSON.parse(req.body["payment"]);
+  const payment = JSON.parse(req.body["payment"] || "{}");
   const psum = payment["amount"] || 0;
 
   switch (formname) {
